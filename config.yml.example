@@ -14,4 +14,4 @@ database:
   server: localhost
   database: locbot
   username: locbot
-  password: your_bot_logging_database
+  password: your_bot_logging_database_password
