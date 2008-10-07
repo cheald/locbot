@@ -73,7 +73,7 @@ private
 	def incoming_msg(fullactor, actor, target, text)
 		log_actor(target, actor)
 		if text.match(/^#{@irc.me}/i) then
-			if m = (text.match(/.*?who is (in|from) (.*?)\??/i) || text.match(/.*?who do you know in (.*?)\??/i)) then
+			if m = (text.match(/.*?(who is|who's) (in|from) (.*?)\?/i) || text.match(/.*?who do you know in (.*?)\?/i)) then
 				lookup_people_by_place actor, target, m
 			elsif text.match(/botsnack/i) then
 				botsnack target, actor 
@@ -236,7 +236,7 @@ private
 		msg = nil
 		reply, map = location_for(host, rawnick)
 		if map then
-			msg = sprintf("%s: %s (Map: %s)", request[:from], reply, map)
+			msg = sprintf("%s: %s ( Map: %s )", request[:from], reply, map)
 		else
 			msg = sprintf("%s: %s", request[:from], reply)
 		end
@@ -297,6 +297,7 @@ private
 	end
 	
 	def find_people_in(channel, place)
+		puts "Finding people in #{place}"
 		query = sprintf(
 			'select distinct user from log where server = "%s" and channel = "%s" and (country like "%s" or region like "%s" or city like "%s") order by created_at desc', 
 			@db.escape_string(@config[:server][:address]), 
