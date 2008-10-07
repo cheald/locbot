@@ -1,0 +1,17 @@
+server:
+  address: irc.freenode.net
+  port: 6667
+  username: LocBot
+  realname: Antiarc's LocBot
+  nicknames: [LocBot, LocBot1, LocBot2, LocBot3]
+  silent: true
+  channels: ["#wowace", "#rubyonrails", "#wowuidev"]
+  auth:
+    handler: nickserv
+    password: your_bot_auth_password
+	
+database:
+  server: localhost
+  database: locbot
+  username: locbot
+  password: your_bot_logging_database
